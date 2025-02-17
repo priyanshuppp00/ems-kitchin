@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./userSlice";
 import cartReducer from "./cartSlice";
 import couponReducer from "./couponSlice";
-import userReducer from "./userSlice";
+import notificationReducer from "./notificationSlice";
 
 const appStore = configureStore({
   reducer: {
+    user: userReducer,
     cart: cartReducer,
     coupon: couponReducer,
-    user: userReducer,
+    notification: notificationReducer,
   },
 });
 

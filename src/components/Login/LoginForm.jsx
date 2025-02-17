@@ -1,5 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRef, useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../utils/firebase";
 import { useTheme } from "../../context/ThemeContext";
@@ -10,11 +11,25 @@ const LoginForm = () => {
   const password = useRef(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     setError("");
+    setEmailError("");
+
+    if (!validateEmail(email.current.value)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+
     setIsLoading(true);
 
     signInWithEmailAndPassword(
@@ -59,7 +74,21 @@ const LoginForm = () => {
       <p className="pt-2 text-center">Welcome back! Please login.</p>
 
       {error && (
-        <div className="p-2 mt-2 text-sm text-center text-red-600 rounded-md dark:text-red-400 bg-red-50 dark:bg-red-900/20 animate-shake">
+        <div className="flex items-center p-3 mt-2 text-sm text-red-600 rounded-md dark:text-red-400 bg-red-50 dark:bg-red-900/20 animate-shake">
+          <svg
+            className="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
           {error}
         </div>
       )}
@@ -75,24 +104,39 @@ const LoginForm = () => {
               isDarkMode
                 ? "bg-gray-900 text-white focus:bg-gray-800"
                 : "bg-gray-200 text-gray-900 focus:bg-white"
-            }`}
+            } ${emailError ? "border border-red-500" : ""}`}
             required
+            onChange={() => setEmailError("")}
           />
+          {emailError && (
+            <p className="mt-1 text-sm text-red-500">{emailError}</p>
+          )}
         </div>
 
         <div className="relative mb-4 group">
-          <i className="text-gray-500 transition-colors fas fa-lock left-3 top-3 dark:text-gray-400 group-focus-within:text-purple-500"></i>
+          <i className="absolute text-gray-500 transition-colors fas fa-lock left-3 top-3 dark:text-gray-400 group-focus-within:text-purple-500"></i>
           <input
             ref={password}
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
-            className={`w-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-purple-500 rounded-md outline-none ${
+            className={`w-full py-2 pl-10 pr-12 focus:ring-2 focus:ring-purple-500 rounded-md outline-none ${
               isDarkMode
                 ? "bg-gray-900 text-white focus:bg-gray-800"
                 : "bg-gray-200 text-gray-900 focus:bg-white"
             }`}
             required
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute text-gray-500 right-3 top-3 hover:text-purple-500"
+          >
+            {showPassword ? (
+              <EyeSlashIcon className="w-5 h-5" />
+            ) : (
+              <EyeIcon className="w-5 h-5" />
+            )}
+          </button>
         </div>
 
         <button

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setExplicitLogout } from "../../utils/userSlice";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import useOnlineStatus from "../../hooks/useOnlineStatus";
@@ -46,7 +47,7 @@ const Header = () => {
   const [showNav, setShowNav] = useState(false);
   const onlineStatus = useOnlineStatus();
   const cartItems = useSelector((store) => store.cart.items);
-  const user = useSelector((store) => store.user);
+  const user = useSelector((store) => store.user.user);
   const navigate = useNavigate(); // For redirection after signout
 
   const toggleNav = () => setShowNav((prev) => !prev);
@@ -58,8 +59,11 @@ const Header = () => {
     }
   };
 
+  const dispatch = useDispatch();
+
   const handleSignout = async () => {
     try {
+      dispatch(setExplicitLogout(true));
       await signOut(auth);
       navigate("/login"); // Redirect after signout
     } catch (error) {
@@ -101,22 +105,33 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <Toggle className="mx-4" />
 
-          <NavLink
-            to={user ? "/" : "/login"}
-            onClick={user ? handleSignout : null}
-            className={({ isActive }) =>
-              `relative no-underline cursor-pointer ${
-                isActive
-                  ? "text-purple-500 font-bold"
-                  : isDarkMode
-                  ? "text-white"
-                  : "text-gray-900"
-              } hover:text-purple-500 group`
-            }
-          >
-            {user ? "Logout" : "Login"}
-            <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
-          </NavLink>
+          {user ? (
+            <button
+              onClick={handleSignout}
+              className={`relative no-underline cursor-pointer ${
+                isDarkMode ? "text-white" : "text-gray-900"
+              } hover:text-purple-500 group`}
+            >
+              Logout
+              <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
+            </button>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                `relative no-underline cursor-pointer ${
+                  isActive
+                    ? "text-purple-500 font-bold"
+                    : isDarkMode
+                    ? "text-white"
+                    : "text-gray-900"
+                } hover:text-purple-500 group`
+              }
+            >
+              Login
+              <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
+            </NavLink>
+          )}
 
           <NavLink
             to="/cart"

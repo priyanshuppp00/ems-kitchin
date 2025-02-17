@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { showNotification } from "../../utils/notificationSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { addUser, removeUser } from "../../utils/userSlice";
@@ -11,7 +12,15 @@ import { useTheme } from "../../context/ThemeContext";
 const Login = () => {
   const { isDarkMode } = useTheme();
   const [isSignUp, setIsSignUp] = useState(false);
+  const userState = useSelector((store) => store.user);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/login") {
+      setIsSignUp(false);
+    }
+  }, [location]);
   const dispatch = useDispatch();
 
   const toggleSignUp = () => setIsSignUp((prevState) => !prevState);
@@ -21,8 +30,22 @@ const Login = () => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
-      } else {
-        dispatch(removeUser());
+        dispatch(
+          showNotification({
+            message: "Login successful!",
+            type: "success",
+          })
+        );
+      } else if (userState?.user) {
+        dispatch(removeUser({ explicitLogout: userState?.explicitLogout }));
+        if (userState?.explicitLogout) {
+          dispatch(
+            showNotification({
+              message: "Logged out successfully",
+              type: "info",
+            })
+          );
+        }
       }
     });
 

@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import ReactDOM from "react-dom/client";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Notification from "./components/Notification/Notification";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Body from "./layouts/Body";
 import Home from "./layouts/Home";
@@ -91,10 +92,11 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={appStore}>
-    <ErrorBoundary>
-      <ThemeProvider>
+    <ThemeProvider>
+      <ErrorBoundary>
         <RouterProvider router={appRouter} />
-      </ThemeProvider>
-    </ErrorBoundary>
+        <Notification />
+      </ErrorBoundary>
+    </ThemeProvider>
   </Provider>
 );
