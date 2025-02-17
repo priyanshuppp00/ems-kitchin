@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Custom styles for dark and light themes using Tailwind CSS */
+
+/* Light Theme Styles */
+body.light {
+ background-color: #ffffff;
+ color: black
+}
+
+header.light {
+  background-color:  #ffffff;
+  color: black
+}
+
+footer.light {
+  background-color: antiquewhite;
+ color: black
+}
+
+/* Dark Theme Styles */
+body.dark {
+  background-color: rgb(9, 8, 16);
+  color: #ffff;
+}
+
+header.dark {
+  background-color: rgb(7, 4, 29);
+  color: #ffff;
+}
+
+footer.dark {
+  background-color: rgb(7, 4, 29);
+  color: #ffff;
+}
