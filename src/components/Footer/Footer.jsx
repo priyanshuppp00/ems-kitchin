@@ -24,24 +24,21 @@ const SocialIcons = () => (
   </div>
 );
 
-const FooterColumn = ({ title, items }) => {
-  const { isDarkMode } = useTheme();
-  return (
-    <div>
-      <h3 className={`mb-3 text-xl font-semibold `}>{title}</h3>
-      <ul className="space-y-2">
-        {items.map((item, index) => (
-          <li
-            key={index}
-            className="transition-colors cursor-pointer hover:text-gray-600 "
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+const FooterColumn = ({ title, items }) => (
+  <div>
+    <h3 className="mb-3 text-xl font-semibold">{title}</h3>
+    <ul className="space-y-2">
+      {items.map((item, index) => (
+        <li
+          key={index}
+          className="transition-colors cursor-pointer hover:text-gray-600"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const SubscribeForm = () => {
   const { isDarkMode } = useTheme();
@@ -75,11 +72,11 @@ const Footer = () => {
 
   return (
     <footer
-      className={`px-6 py-10 md:px-12 ${
+      className={`px-6 py-10 md:px-12 border-t border-gray-200 dark:border-gray-800 ${
         isDarkMode ? "bg-gray-950 text-white" : "bg-slate-200 text-black"
       }`}
     >
-      <div className="grid max-w-6xl grid-cols-1 gap-6 mx-auto md:grid-cols-4">
+      <div className="grid max-w-6xl grid-cols-2 gap-6 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <div>
           <h3 className="text-2xl font-bold">EMS-Kitchin</h3>
           <p className="mt-2">

@@ -1,5 +1,4 @@
 import appstore from "./appstore.svg";
-import arrowdown from "./arrowdown.svg";
 import back1 from "./back1.svg";
 import googlestore from "./googlestore.svg";
 import heart from "./heart.svg";
@@ -23,7 +22,7 @@ import hero3 from "./hero-img3.png";
 
 export const assets = {
   appstore,
-  arrowdown,
+
   back1,
   googlestore,
   heart,

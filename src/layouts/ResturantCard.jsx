@@ -1,78 +1,80 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react/display-name */
-
 import { CDN_URL } from "../utils/contants";
 import star from "../assets/star.svg";
 import yellowstar from "../assets/yellowstar.svg";
 import { useTheme } from "../context/ThemeContext";
 
-const RestaurantCard = ({ resData }) => {
-  if (!resData?.info) return null; // Ensure resData exists before rendering
+const ResturantCard = ({ resData }) => {
   const { isDarkMode } = useTheme();
-  const { name, avgRating, cuisines, cloudinaryImageId, locality, sla } =
-    resData.info;
-  const { slaString } = sla || {};
+  const { name, avgRating, cuisines, cloudinaryImageId, locality } =
+    resData?.info;
+  const { slaString } = resData?.info?.sla;
   const { header, subHeader } = resData?.info?.aggregatedDiscountInfoV3 || {};
   const discountInfo = header && subHeader ? `${header} ${subHeader}` : "";
 
   return (
     <div
-      className={`overflow-hidden transition-all duration-300 rounded-lg shadow-lg hover:shadow-2xl ${
-        isDarkMode ? "bg-gray-800 text-white " : "bg-gray-200 text-black "
-      }`}
+      className={`flex flex-col h-full overflow-hidden rounded-lg shadow-lg res-card 
+    ${isDarkMode ? "bg-gray-900 text-white" : "bg-slate-200 text-black"} 
+    `}
     >
-      {/* Restaurant Image with Discount */}
+      {/* Image Section */}
       <div className="relative">
         <img
-          className="object-cover w-full h-56"
           loading="lazy"
           src={CDN_URL + cloudinaryImageId}
-          alt={name || "Restaurant Image"}
+          className="object-cover w-full h-48"
+          alt={name}
         />
         {discountInfo && (
-          <p className="absolute px-2 py-1 text-xs text-white bg-yellow-500 rounded-md top-2 left-2">
+          <p className="absolute px-3 py-1 text-xl font-bold text-white rounded-lg shadow-md bottom-2 left-2 bg-black/50">
             {discountInfo}
           </p>
         )}
       </div>
 
-      {/* Restaurant Details */}
-      <div className="p-4">
-        <h3 className="text-xl font-semibold ">{name}</h3>
-        <div className="flex items-center mt-2 mb-3">
+      {/* Content Section */}
+      <div
+        className={`flex flex-col flex-grow p-2 ${
+          isDarkMode ? "bg-gray-800 text-white" : "bg-slate-300 text-black"
+        }`}
+      >
+        <h3 className="text-lg font-semibold text-red-500">{name}</h3>
+
+        {/* Rating Section */}
+        <div className="flex items-center gap-2 mt-1 font-stretch-200% rating">
           <img
             src={avgRating >= 4 ? star : yellowstar}
             alt="Rating Star"
-            className="w-5 h-5"
+            className="w-4 h-4"
           />
-          <h4 className="ml-2 text-lg font-medium text-black">
-            {avgRating || "N/A"}
-          </h4>
-          <span className="mx-2 text-black">|</span>
-          <h4 className="text-black">{slaString || "N/A"}</h4>
+          <h4 className="text-sm font-semibold">{avgRating}</h4>
+          <span className="mx-1 ">•</span>
+          <h4 className="text-sm">{slaString}</h4>
         </div>
-        <p className="text-sm text-black">
-          {cuisines?.join(", ") || "Unknown Cuisines"}
-        </p>
-        <p className="mt-1 text-sm text-black">
-          {locality || "Unknown Location"}
-        </p>
+
+        {/* Cuisines */}
+        <p className="mt-2 text-sm font-extralight">{cuisines.join(", ")}</p>
+
+        {/* Locality */}
+        <p className="text-sm font-extralight ">{locality}</p>
       </div>
     </div>
   );
 };
 
-// Higher-Order Component (HOC) to Add a "Top Rated" Badge
-export const withTopRatedBadge = (Component) => {
+// HOC for Top Rated Restaurants
+export const topRated = (ResturantCard) => {
   return (props) => (
-    <div className="relative">
-      <div className="absolute top-0 left-0 px-2 py-1 text-xs font-bold text-white bg-red-500 rounded-br-lg">
+    <div className="relative h-full top-rated">
+      <div className="absolute top-3 right-[-30px] px-10 py-[8px] text-xs text-white bg-gray-700 rounded-br-lg rotate-[40deg] shadow-md z-10">
         Top Rated
       </div>
-      <Component {...props} />
+      <ResturantCard {...props} />
     </div>
   );
 };
 
-export default RestaurantCard;
+export default ResturantCard;

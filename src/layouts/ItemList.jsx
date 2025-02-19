@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL, ERROR_IMG } from "../utils/contants";
 import { addItems, removeItems } from "../utils/cartSlice";
 import { useTheme } from "../context/ThemeContext";
+import { toast } from "sonner";
 
 const Item = ({ item }) => {
   const { isDarkMode } = useTheme();
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+
   const cartItem = cartItems.find(
     (cartItem) => cartItem.card.info.id === item.card.info.id
   );
@@ -17,73 +19,109 @@ const Item = ({ item }) => {
     event.target.src = ERROR_IMG;
   };
 
+  const handleAddItem = () => {
+    dispatch(addItems(item));
+    toast.success(`${item.card.info.name} added to cart`);
+  };
+
+  const handleIncrement = () => {
+    dispatch(addItems(item));
+    toast.success(`${item.card.info.name} quantity increased`);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 0) {
+      dispatch(removeItems(item));
+      toast.success(`${item.card.info.name} quantity decreased`);
+    }
+  };
+
   return (
     <div
-      className={`flex flex-col p-4 transition-all duration-300 rounded-lg shadow-md${
-        isDarkMode ? "bg-gray-900 text-white" : "bg-gray-200 text-black"
-      } `}
-      key={item.card.info.id}
+      className={`flex justify-between p-4 transition-colors border-b border-gray-100  ${
+        isDarkMode ? "bg-gray-900 text-white" : "bg-slate-200 text-black"
+      } 
+    `}
     >
-      <div className="mb-4">
-        <h4 className="text-lg font-semibold">{item.card.info.name}</h4>
-        <p className="">
+      <div className="flex-1 pr-4">
+        <div className="flex items-center gap-2 mb-1">
+          {item.card.info.isVeg ? (
+            <span className="text-green-600">🟢</span>
+          ) : (
+            <span className="text-red-600">🔴</span>
+          )}
+          {item.card.info.isBestseller && (
+            <span className="px-2 py-1 text-xs text-yellow-800 bg-yellow-100 rounded">
+              Bestseller
+            </span>
+          )}
+        </div>
+        <h4 className="font-semibold ">{item.card.info.name}</h4>
+        <p className="mt-1 text-sm ">
           ₹{(item.card.info.defaultPrice || item.card.info.price) / 100}
         </p>
-        <p className="text-sm t">{item.card.info.description}</p>
+        <p className="mt-2 text-sm ">{item.card.info.description}</p>
+        {item.card.info.customizable && (
+          <p className="mt-2 text-xs text-green-600">Customizable</p>
+        )}
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col items-center">
+
+      <div className="relative w-32 h-32">
+        {item.card.info.imageId && (
+          <img
+            className="object-cover w-full h-full rounded-lg"
+            src={CDN_URL + item.card.info.imageId}
+            alt={item.card.info.name}
+            onError={handleImageError}
+          />
+        )}
+        <div className="absolute bottom-0 right-0 ">
           {!quantity ? (
             <button
-              className="p-2 text-white transition-colors bg-red-500 rounded-md cursor-pointer hover:bg-red-600"
-              onClick={() => dispatch(addItems(item))}
+              className={`px-4 py-2 font-bold text-green-600 transition-shadow rounded-lg shadow-md cursor-pointer hover:shadow-lg ${
+                isDarkMode
+                  ? "bg-gray-900 text-white"
+                  : "bg-slate-200 text-black"
+              }`}
+              onClick={handleAddItem}
             >
-              <p>Add</p>
-              <p>+</p>
+              ADD
             </button>
           ) : (
-            <div className="flex items-center space-x-2">
+            <div
+              className={`flex items-center gap-3 px-3 py-1 rounded-full shadow-md ${
+                isDarkMode
+                  ? "bg-gray-900 text-white"
+                  : "bg-slate-200 text-black"
+              }`}
+            >
               <button
-                className="px-4 py-1 text-xl font-extrabold text-white bg-purple-100 rounded-full hover:bg-purple-200"
-                onClick={() => dispatch(removeItems(item))}
+                className="text-lg font-bold text-red-500 cursor-pointer"
+                onClick={handleDecrement}
               >
                 -
               </button>
-              <span className="text-lg font-semibold ">{quantity}</span>
+              <span className="font-medium ">{quantity}</span>
               <button
-                className="px-4 py-1 text-xl font-extrabold text-green-400 bg-green-100 rounded-full dark:bg-green-700 hover:bg-green-200"
-                onClick={() => dispatch(addItems(item))}
+                className="text-lg font-bold text-green-500 cursor-pointer"
+                onClick={handleIncrement}
               >
                 +
               </button>
             </div>
           )}
         </div>
-        <div className="relative w-24 h-24 overflow-hidden">
-          <img
-            loading="lazy"
-            src={CDN_URL + item.card.info.imageId}
-            alt={item.card.info.name}
-            className="object-cover w-full h-full"
-            onError={handleImageError}
-          />
-        </div>
       </div>
-      <p className="mt-2 text-sm">Customizable</p>
     </div>
   );
 };
 
 const ItemList = ({ items }) => {
   return (
-    <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3">
-      <div className="w-full">
-        <div className="space-y-6">
-          {items.map((item) => (
-            <Item key={item.card.info.id} item={item} />
-          ))}
-        </div>
-      </div>
+    <div className={`divide-y divide-gray-300  `}>
+      {items.map((item) => (
+        <Item key={item.card.info.id} item={item} />
+      ))}
     </div>
   );
 };
