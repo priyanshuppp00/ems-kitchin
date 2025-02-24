@@ -71,7 +71,6 @@ const Header = () => {
     }
   };
 
-  // Set smooth scrolling behavior once
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
@@ -149,7 +148,7 @@ const Header = () => {
           </NavLink>
 
           <button
-            className="text-center cursor-pointer md:hidden focus:outline-none"
+            className="text-2xl text-center cursor-pointer md:hidden focus:outline-none"
             onClick={toggleNav}
             aria-label="Toggle navigation menu"
             aria-expanded={showNav}
@@ -180,7 +179,7 @@ const Header = () => {
       </div>
 
       <div
-        className={`absolute top-full left-0 w-full ${
+        className={`absolute top-full left-0 w-full text-2xl ${
           showNav ? "block" : "hidden"
         } ${
           isDarkMode ? "bg-gray-950 text-white" : "bg-slate-200 text-black"
