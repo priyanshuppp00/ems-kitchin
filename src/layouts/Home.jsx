@@ -38,8 +38,10 @@ const HeroLeft = () => {
         id="L-text"
         className="relative mb-5 text-3xl font-semibold leading-tight sm:text-5xl"
       >
-        We're <span className="text-heading-text">Serious</span> For{" "}
-        <span className="text-heading-text">Food</span> & Delivery.
+        We're <span className="text-red-600 text-heading-text">Serious</span>
+        For
+        <span className="text-red-600 text-heading-text"> Food</span> &
+        Delivery.
       </h1>
       <p id="L-text" className="text-base">
         Best cooks and best delivery guys all at your service. Hot tasty food
@@ -47,7 +49,7 @@ const HeroLeft = () => {
       </p>
       <NavLink
         to="/home"
-        className="inline-block p-3 mt-6 text-sm text-white transition duration-300 bg-purple-700 dark:bg-purple-900 rounded-lg shadow-md hover:bg-purple-900 dark:hover:bg-purple-700 hover:scale-105 text-center sm:text-base w-full sm:w-[50%] md:w-[40%] lg:w-[30%] xl:w-[20%]"
+        className="inline-block p-3 mt-6 text-sm text-white transition duration-300 bg-red-500 rounded-lg shadow-md hover:bg-red-700 hover:scale-105 text-center sm:text-base w-full sm:w-[50%] md:w-[40%] lg:w-[30%] xl:w-[20%]"
       >
         Order Now
       </NavLink>
@@ -119,8 +121,8 @@ const HContainerContent = () => {
       />
       <div className="w-full sm:w-[55%] order-1 sm:order-2">
         <h2 className="mb-4 text-xl font-bold sm:text-2xl">
-          We are <span className="text-red-500">more</span> than{" "}
-          <span className="text-red-500">multiple</span> service
+          We are <span className="text-red-600">more</span> than
+          <span className="text-red-600">multiple</span> service
         </h2>
         <p className="mb-4 text-sm sm:text-base">
           This is a type of restaurant which typically serves food and drink, in
@@ -157,7 +159,7 @@ const HContainerContent = () => {
         </div>
         <NavLink
           to="/about"
-          className="inline-block p-2 mt-4 text-sm text-white transition duration-300 bg-purple-700 rounded-lg shadow-md dark:bg-purple-900 hover:bg-purple-900 dark:hover:bg-purple-700 sm:text-base hover:scale-105"
+          className="inline-block p-2 mt-4 text-sm transition duration-300 bg-red-500 rounded-lg text- shadow-m hover:bg-red-700 sm:text-base hover:scale-105"
         >
           About Us
         </NavLink>
@@ -170,8 +172,8 @@ const H2ContainerContent = () => (
   <div className="flex flex-wrap items-center justify-center p-8 space-y-6 md:justify-between md:space-y-0">
     <div className="w-full sm:w-[80%] md:w-[50%] text-center md:text-left">
       <h2 className="mb-4 text-xl font-bold sm:text-2xl">
-        It’s Now <span className="text-purple-600">More Easy</span> to Order by
-        Our Mobile <span className="text-purple-600">App</span>
+        It’s Now <span className="text-red-600">More Easy</span> to Order by Our
+        Mobile <span className="text-red-600">App</span>
       </h2>
       <p className="mb-4 text-sm sm:text-base">
         All you need to do is download one of the best delivery apps, and most

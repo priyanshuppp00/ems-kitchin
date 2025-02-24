@@ -92,7 +92,7 @@ const Login = () => {
           </p>
           <button
             onClick={toggleSignUp}
-            className="px-5 py-2 mt-6 text-base font-medium text-white transition-all bg-purple-600 rounded-md shadow-md cursor-pointer hover:bg-purple-800 hover:scale-105 hover:shadow-lg active:scale-95 focus:outline-none sm:px-6 sm:py-3"
+            className="px-5 py-2 mt-6 text-base font-medium text-white transition-all bg-red-500 rounded-md shadow-md cursor-pointer hover:bg-red-700 hover:scale-105 hover:shadow-lg active:scale-95 focus:outline-none sm:px-6 sm:py-3"
             aria-label={isSignUp ? "Go to Sign In" : "Go to Sign Up"}
           >
             {isSignUp ? "Sign In" : "Sign Up"}

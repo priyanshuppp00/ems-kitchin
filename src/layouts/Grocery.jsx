@@ -18,7 +18,7 @@ const Grocery = () => {
         {/* Loading Spinner */}
         <div className="mb-4">
           <svg
-            className="w-12 h-12 mx-auto text-purple-500 animate-spin"
+            className="w-12 h-12 mx-auto text-red-500 animate-spin"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -53,7 +53,7 @@ const Grocery = () => {
         {/* Call to Action */}
         <div className="mt-6">
           <button
-            className="px-6 py-2 text-white transition duration-300 bg-purple-600 rounded-full cursor-pointer hover:bg-purple-800 hover:scale-105"
+            className="px-6 py-2 text-white transition duration-300 rounded-full cursor-pointer bg-red-6500 hover:bg-red-700 hover:scale-105"
             onClick={() => window.location.reload()} // Refresh the page or redirect
           >
             Refresh Page

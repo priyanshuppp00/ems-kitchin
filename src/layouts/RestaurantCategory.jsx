@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import ItemList from "./ItemList";
 import { CDN_URL } from "../utils/contants";
 import { useTheme } from "../context/ThemeContext";
@@ -29,7 +27,7 @@ const RestaurantCategory = ({ data, showItems, onClick }) => {
   const { isDarkMode } = useTheme();
   return (
     <div
-      className={`overflow-hidden rounded-lg shadow-sm  ${
+      className={`overflow-hidden   ${
         isDarkMode ? "bg-gray-900 text-white" : "bg-slate-200 text-black"
       } 
     `}

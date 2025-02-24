@@ -94,7 +94,7 @@ const SignUp = () => {
         </p>
 
         {errorMessage && (
-          <div className="flex items-center p-3 mt-2 text-sm text-red-600 rounded-md dark:text-red-400 bg-red-50 dark:bg-red-900/20 animate-shake">
+          <div className="flex items-center p-3 mt-2 text-sm text-red-500 rounded-md bg-red-50 dark:bg-red-900/20 animate-shake">
             <svg
               className="w-5 h-5 mr-2"
               fill="none"
@@ -121,38 +121,38 @@ const SignUp = () => {
             <i
               className={`absolute text-gray-500 transition-colors fas fa-${
                 input.type === "email" ? "user" : "lock"
-              } left-3 top-3 dark:text-gray-400 group-focus-within:text-purple-500`}
+              } left-3 top-3 dark:text-gray-400 group-focus-within:text-red-400`}
             ></i>
             <input
               type={input.type}
               placeholder={input.placeholder}
               name={input.name}
               onChange={handleChange}
-              className={`w-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-purple-500 rounded-md outline-none transition-all ${
+              className={`w-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-red-400 rounded-md outline-none transition-all ${
                 isDarkMode
                   ? "bg-gray-900 text-white focus:bg-gray-800"
                   : "bg-gray-200 text-gray-900 focus:bg-white"
               } ${
                 input.name === "email" && emailError
-                  ? "border border-red-500"
+                  ? "border border-red-400"
                   : ""
               }`}
               required
             />
             {input.name === "email" && emailError && (
-              <p className="mt-1 text-sm text-red-500">{emailError}</p>
+              <p className="mt-1 text-sm text-red-400">{emailError}</p>
             )}
           </div>
         ))}
 
         <div className="relative mb-4 group">
-          <i className="absolute text-gray-500 transition-colors fas fa-lock left-3 top-3 dark:text-gray-400 group-focus-within:text-purple-500"></i>
+          <i className="absolute text-gray-500 transition-colors fas fa-lock left-3 top-3 dark:text-gray-400 group-focus-within:text-red-400"></i>
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             name="password"
             onChange={handleChange}
-            className={`w-full py-2 pl-10 pr-12 focus:ring-2 focus:ring-purple-500 rounded-md outline-none transition-all ${
+            className={`w-full py-2 pl-10 pr-12 focus:ring-2 focus:ring-red-400 rounded-md outline-none transition-all ${
               isDarkMode
                 ? "bg-gray-900 text-white focus:bg-gray-800"
                 : "bg-gray-200 text-gray-900 focus:bg-white"
@@ -162,7 +162,7 @@ const SignUp = () => {
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute text-gray-500 right-3 top-3 hover:text-purple-500"
+            className="absolute text-gray-500 right-3 top-3 hover:text-red-400"
           >
             {showPassword ? (
               <EyeSlashIcon className="w-5 h-5" />
@@ -174,7 +174,7 @@ const SignUp = () => {
 
         <button
           type="submit"
-          className="w-full py-2 mt-4 text-white transition-all rounded-md cursor-pointer hover:scale-[1.02] active:scale-95 bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-600 shadow-md hover:shadow-lg"
+          className="w-full py-2 mt-4 text-white transition-all rounded-md cursor-pointer hover:scale-[1.02] active:scale-95 bg-red-500 hover:bg-red-700 shadow-md hover:shadow-lg"
         >
           Create Account
         </button>

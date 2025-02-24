@@ -40,14 +40,13 @@ const ResturantMenu = () => {
 
   return (
     <div
-      className={`max-w-3xl p-4 mx-auto pb-20  ${
+      className={`max-w-2xl p-12 mx-auto pb-20  ${
         isDarkMode ? "bg-gray-900 text-white" : "bg-slate-200 text-black"
       } 
     `}
     >
-      {/* Restaurant Details */}
       <div
-        className={`flex flex-col gap-5 p-6 rounded-lg shadow-lg mt-28 md:flex-row 
+        className={`flex flex-col gap-5 p-6  mt-28 md:flex-row 
     `}
       >
         <img
@@ -92,13 +91,12 @@ const ResturantMenu = () => {
         </p>
       </div>
 
-      {/* Menu Categories */}
       <div
         className={`mt-6 space-y-6
     `}
       >
         {categories.map((category, index) => (
-          <div key={index} className="rounded-lg shadow-sm ">
+          <div key={index} className="">
             <RestaurantCategory
               data={category?.card?.card}
               showItems={index === showIndex}

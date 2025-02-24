@@ -53,7 +53,7 @@ const Error = () => {
         </p>
         <NavLink
           to="/"
-          className="px-5 py-3 mt-6 text-lg font-medium text-white transition duration-300 bg-purple-500 rounded-lg shadow-md hover:scale-105 hover:bg-purple-600"
+          className="px-5 py-3 mt-6 text-lg font-medium text-white transition duration-300 bg-red-500 rounded-lg shadow-md hover:scale-105 hover:bg-red-600"
         >
           Return to Home
         </NavLink>

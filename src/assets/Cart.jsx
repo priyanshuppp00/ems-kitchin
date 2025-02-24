@@ -12,7 +12,7 @@ const Cart = () => {
         viewBox="0 0 19 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="transition-all duration-300 hover:stroke-purple-600 active:stroke-purple-800 hover:scale-110" // Smooth transition, hover & active effect
+        className="transition-all duration-300 hover:stroke-red-600 active:stroke-red-800 hover:scale-110" // Smooth transition, hover & active effect
       >
         <g clipPath="url(#clip0_211_55)">
           <path

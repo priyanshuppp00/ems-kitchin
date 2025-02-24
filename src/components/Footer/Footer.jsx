@@ -51,7 +51,7 @@ const SubscribeForm = () => {
           isDarkMode ? "bg-gray-800 text-white" : "bg-gray-300 text-black"
         }`}
       />
-      <button className="px-4 py-2 text-white transition-colors bg-purple-600 cursor-pointer hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600">
+      <button className="px-4 py-2 text-white transition-colors bg-red-500 cursor-pointer hover:bg-red-700">
         Subscribe
       </button>
     </div>

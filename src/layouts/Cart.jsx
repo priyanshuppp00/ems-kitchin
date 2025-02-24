@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import emptyCartImage from "../assets/EmptyCart.svg";
@@ -80,7 +79,7 @@ const CartItem = ({ item }) => {
       <div className="flex items-center gap-2 mt-2 sm:gap-4 sm:mt-0">
         <div className="flex items-center gap-2 px-2 py-1 border rounded-lg">
           <button
-            className="p-1 text-xs font-bold text-red-500 cursor-pointer hover:text-red-700 sm:text-base"
+            className="p-1 text-xs font-bold text-red-400 cursor-pointer hover:text-red-500 sm:text-base"
             onClick={handleRemoveItem}
           >
             -
@@ -175,7 +174,7 @@ const Cart = () => {
       </p>
       <NavLink
         to="/home"
-        className="px-6 py-4 mt-6 text-lg transition-transform transform bg-purple-600 rounded-lg sm:text-xl md:text-2xl lg:text-3xl hover:bg-purple-800 hover:scale-105"
+        className="px-6 py-4 mt-6 text-lg transition-transform transform bg-red-500 rounded-lg sm:text-xl md:text-2xl lg:text-3xl hover:bg-red-700 hover:scale-105"
       >
         Explore Restaurants Near You
       </NavLink>
@@ -200,7 +199,7 @@ const Cart = () => {
             <CartItem key={index} item={item} />
           ))}
         </div>
-        <div className="p-4 mt-6 rounded-lg shadow-md sm:p-6 overflow-y-auto max-h-[calc(100vh-200px)]">
+        <div className="p-4 mt-6  sm:p-6 overflow-y-auto max-h-[calc(100vh-200px)]">
           <h2 className="mb-4 text-2xl font-semibold">Summary</h2>
           <div className="mb-4 space-y-3">
             <p className="flex justify-between">
@@ -235,8 +234,8 @@ const Cart = () => {
             <button
               className={`px-4 py-2 rounded-lg ${
                 couponCode
-                  ? "bg-purple-500 hover:bg-purple-700 text-white"
-                  : "bg-purple-200 cursor-not-allowed text-gray-700"
+                  ? "bg-red-500 hover:bg-red-700 text-white"
+                  : "bg-red-400 cursor-not-allowed text-white"
               }`}
               onClick={handleApplyCoupon}
               disabled={!couponCode}

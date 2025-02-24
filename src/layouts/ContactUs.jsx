@@ -48,7 +48,7 @@ const ContactUs = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className={`w-full px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-purple-500 
+            className={`w-full px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-red-5400 
           ${
             isDarkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"
           }`}
@@ -63,7 +63,7 @@ const ContactUs = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className={`w-full px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-purple-500 
+            className={`w-full px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-red-400 
           ${
             isDarkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"
           }`}
@@ -78,7 +78,7 @@ const ContactUs = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
-            className={`w-full px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-purple-500 
+            className={`w-full px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-red-400 
           ${
             isDarkMode ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"
           }`}
@@ -87,7 +87,7 @@ const ContactUs = () => {
 
         <button
           type="submit"
-          className="w-full py-2 text-white transition-all duration-300 bg-purple-600 rounded-md cursor-pointer hover:bg-purple-800"
+          className="w-full py-2 text-white transition-all duration-300 bg-red-500 rounded-md cursor-pointer hover:bg-red-700"
         >
           Send Message
         </button>

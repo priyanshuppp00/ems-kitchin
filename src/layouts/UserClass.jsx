@@ -86,7 +86,7 @@ const UserClassContent = ({ userInfo, userRepo, follow }) => {
         <p className="text-xl font-semibold">{name || "Unknown User"}</p>
         <p className="text-gray-600">{login}</p>
         <p className="my-2 text-sm text-center">{bio || "No bio available"}</p>
-        <button className="w-40 px-4 py-2 mb-3 font-semibold text-white transition-all duration-200 bg-purple-500 rounded-lg hover:bg-purple-600">
+        <button className="w-40 px-4 py-2 mb-3 font-semibold text-white transition-all duration-200 bg-red-500 rounded-lg hover:bg-red-600">
           Edit Profile
         </button>
         <p className="text-sm">
@@ -119,7 +119,7 @@ const UserClassContent = ({ userInfo, userRepo, follow }) => {
               userRepo.map((repo) => (
                 <li
                   key={repo.id}
-                  className="text-purple-500 cursor-pointer hover:text-purple-600"
+                  className="text-red-500 cursor-pointer hover:text-red-700"
                 >
                   {repo.name}
                 </li>
@@ -136,7 +136,7 @@ const UserClassContent = ({ userInfo, userRepo, follow }) => {
               follow.map((fol) => (
                 <li
                   key={fol.id}
-                  className="text-purple-500 cursor-pointer hover:text-purple-600"
+                  className="text-red-500 cursor-pointer hover:text-red-700"
                 >
                   {fol.login}
                 </li>

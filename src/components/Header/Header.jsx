@@ -28,15 +28,15 @@ const NavLinks = ({ onClick, isDarkMode }) => (
         className={({ isActive }) =>
           `relative no-underline cursor-pointer ${
             isActive
-              ? "text-purple-500 font-bold"
+              ? "text-red-500 font-bold"
               : isDarkMode
               ? "text-white"
               : "text-gray-900"
-          } hover:text-purple-800 group`
+          } hover:text-red-700 group`
         }
       >
         {label}
-        <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
+        <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
       </NavLink>
     ))}
   </>
@@ -110,10 +110,10 @@ const Header = () => {
               onClick={handleSignout}
               className={`relative no-underline cursor-pointer ${
                 isDarkMode ? "text-white" : "text-gray-900"
-              } hover:text-purple-500 group`}
+              } hover:text-red-600 group`}
             >
               Logout
-              <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
             </button>
           ) : (
             <NavLink
@@ -121,15 +121,15 @@ const Header = () => {
               className={({ isActive }) =>
                 `relative no-underline cursor-pointer ${
                   isActive
-                    ? "text-purple-500 font-bold"
+                    ? "text-red-500 font-bold"
                     : isDarkMode
                     ? "text-white"
                     : "text-gray-900"
-                } hover:text-purple-500 group`
+                } hover:text-red-500 group`
               }
             >
               Login
-              <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
+              <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
             </NavLink>
           )}
 
@@ -139,13 +139,13 @@ const Header = () => {
               isDarkMode ? "text-white" : "text-black"
             }`}
           >
-            <CartIcon className="w-6 h-6 text-current transition-all duration-300 group-hover:text-purple-400" />
+            <CartIcon className="w-6 h-6 text-current transition-all duration-300 group-hover:text-red-700" />
             {cartItems.length > 0 && (
               <span className="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full -top-2 -right-2">
                 {cartItems.length}
               </span>
             )}
-            <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute bottom-[-5px] left-0 right-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
           </NavLink>
 
           <button
