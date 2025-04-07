@@ -49,7 +49,7 @@ EMS Kitchin is a comprehensive restaurant management system built with modern we
 ## Deployment
 
 The project is deployed on Vercel and can be accessed at:
-[https://ems-kitchin-5r5krfty3-priyanshus-projects-43604a64.vercel.app](https://ems-kitchin-5r5krfty3-priyanshus-projects-43604a64.vercel.app)
+[https://ems-kitchin-5r5krfty3-priyanshus-projects-43604a64.vercel.app](https://ems-kitchin.vercel.app/)
 
 To deploy your own version:
 1. Install Vercel CLI:
