@@ -3,15 +3,16 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: "AIzaSyDuAM_GkezWCF2P-u6qkXsOkqt77cz5tCc",
+  authDomain: "ems-kitchin-b2aa5.firebaseapp.com",
+  projectId: "ems-kitchin-b2aa5",
+  storageBucket: "ems-kitchin-b2aa5.appspot.com",
+  messagingSenderId: "1034198949154",
+  appId: "1:1034198949154:web:35921ee3b3ee761902197b",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+console.log(firebaseConfig);
 
 export const auth = getAuth();
