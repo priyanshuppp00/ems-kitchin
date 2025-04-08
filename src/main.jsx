@@ -24,61 +24,30 @@ const AppLayout = () => {
   return (
     <div>
       <Header />
-      <Outlet />
+      <Suspense
+        fallback={
+          <h2 style={{ textAlign: "center", margin: "2rem" }}>Loading...</h2>
+        }
+      >
+        <Outlet />
+      </Suspense>
       <Footer />
     </div>
   );
 };
-
 const appRouter = createBrowserRouter([
   {
-    future: {
-      v7_startTransition: true,
-      v7_relativeSplatPath: true,
-    },
     path: "/",
     element: <AppLayout />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/home",
-        element: <Body />,
-      },
-      {
-        path: "/about",
-        element: (
-          <Suspense fallback={<h2>Loading.......</h2>}>
-            <About />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/contact",
-        element: <ContactUs />,
-      },
-      {
-        path: "/grocery",
-        element: (
-          <Suspense fallback={<h2>Loading....</h2>}>
-            <Grocery />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/home/resturant/:resId",
-        element: <ResturantMenu />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/home", element: <Body /> },
+      { path: "/about", element: <About /> },
+      { path: "/contact", element: <ContactUs /> },
+      { path: "/grocery", element: <Grocery /> },
+      { path: "/home/resturant/:resId", element: <ResturantMenu /> },
+      { path: "/cart", element: <Cart /> },
+      { path: "/login", element: <Login /> },
     ],
     errorElement: (
       <div>
